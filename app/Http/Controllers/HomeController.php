@@ -32,4 +32,9 @@ class HomeController extends Controller
         $products = Product::all();
         return view('store', compact('products'));
     }
+
+    public function contact()
+    {
+        return view('contact');
+    }
 }

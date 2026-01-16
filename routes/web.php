@@ -20,6 +20,8 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/tienda', [App\Http\Controllers\HomeController::class, 'tienda'])->name('tienda');
+Route::get('/contacto', [App\Http\Controllers\HomeController::class, 'contact'])->name('contacto');
+Route::get('/blog', [App\Http\Controllers\HomeController::class, 'blog'])->name('blog');
 
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('cart', [App\Http\Controllers\CartController::class, 'cart'])->name('cart');
