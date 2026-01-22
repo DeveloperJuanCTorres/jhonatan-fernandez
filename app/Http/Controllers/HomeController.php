@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Combo;
 use App\Models\Company;
 use App\Models\Product;
@@ -40,7 +41,8 @@ class HomeController extends Controller
         $categories = Taxonomy::all();
         $products = Product::all();
         $company = Company::first();
-        return view('store', compact('products','categories','company'));
+        $brands = Brand::all();
+        return view('store', compact('products','categories','company','brands'));
     }
 
     public function contact()

@@ -58,18 +58,14 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
+                            @foreach($brands as $key => $brand)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Marca 1
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="{{$key}}">
+                                <label class="form-check-label" for="{{$key}}">
+                                    {{$brand->name}}
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Marca 2
-                                </label>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
