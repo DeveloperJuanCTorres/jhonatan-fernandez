@@ -48,4 +48,10 @@ class HomeController extends Controller
         $company = Company::first();
         return view('contact', compact('company'));
     }
+
+    public function blog()
+    {
+        $company = Company::first();
+        return view('blog', compact('company'));
+    }
 }
