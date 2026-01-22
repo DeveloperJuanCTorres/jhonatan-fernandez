@@ -251,7 +251,7 @@
                                             @php 
                                                 $imagenes = json_decode($oferta->images);
                                             @endphp
-                                            <img src="storage/{{$imagenes[0]}}" width="100" alt="Product Thumbnail" class="tab-image">
+                                            <img src="storage/{{$imagenes[0]}}" style="max-height: 150px;" alt="Product Thumbnail" class="tab-image">
                                         </a>
                                         </figure>
                                         <div class="d-flex flex-column text-center">
