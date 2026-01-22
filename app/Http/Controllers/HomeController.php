@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Taxonomy::all();
-        $products_vendidos = Product::limit(4)->get();
+        $products_vendidos = Product::limit(5)->get();
         $products_oferta = Product::where('oferta', '=', 1);
         $combos = Combo::all();
         return view('home',compact('categories','products_vendidos','combos','products_oferta'));
