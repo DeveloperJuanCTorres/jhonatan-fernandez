@@ -35,8 +35,9 @@ class HomeController extends Controller
 
     public function tienda()
     {
+        $categories = Taxonomy::all();
         $products = Product::all();
-        return view('store', compact('products'));
+        return view('store', compact('products','categories'));
     }
 
     public function contact()
