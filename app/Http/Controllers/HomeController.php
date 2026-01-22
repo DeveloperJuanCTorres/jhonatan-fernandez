@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Combo;
+use App\Models\Company;
 use App\Models\Product;
 use App\Models\Taxonomy;
 use Illuminate\Http\Request;
@@ -30,18 +31,21 @@ class HomeController extends Controller
         $products_vendidos = Product::limit(5)->get();
         $products_oferta = Product::where('oferta', '=', 1)->get();
         $combos = Combo::all();
-        return view('home',compact('categories','products_vendidos','combos','products_oferta'));
+        $company = Company::first();
+        return view('home',compact('categories','products_vendidos','combos','products_oferta','company'));
     }
 
     public function tienda()
     {
         $categories = Taxonomy::all();
         $products = Product::all();
-        return view('store', compact('products','categories'));
+        $company = Company::first();
+        return view('store', compact('products','categories','company'));
     }
 
     public function contact()
     {
-        return view('contact');
+        $company = Company::first();
+        return view('contact', compact('company'));
     }
 }
