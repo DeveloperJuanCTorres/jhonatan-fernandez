@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         $categories = Taxonomy::all();
         $products_vendidos = Product::limit(5)->get();
-        $products_oferta = Product::where('oferta', '=', 1);
+        $products_oferta = Product::where('oferta', '=', 1)->get();
         $combos = Combo::all();
         return view('home',compact('categories','products_vendidos','combos','products_oferta'));
     }
