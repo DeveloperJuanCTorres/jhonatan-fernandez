@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Combo;
 use App\Models\Product;
+use App\Models\Taxonomy;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Taxonomy::all();
+        $products_vendidos = Product::limit(4)->get();
+        $products_oferta = Product::where('oferta', '=', 1);
+        $combos = Combo::all();
+        return view('home',compact('categories','products_vendidos','combos','products_oferta'));
     }
 
     public function tienda()
