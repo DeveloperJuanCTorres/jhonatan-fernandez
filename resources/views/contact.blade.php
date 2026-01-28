@@ -4,77 +4,120 @@
 
 @include('partials.menu')
 
-<section id="contact" class="section-bg wow fadeInUp">
+<section class="contact-section py-5">
+    <div class="container-lg">
 
-    <div class="container">
-
-    <div class="section-header">
-        <!-- <h2>Contáctanos</h2> -->
-        <!-- <p>Lorem Ipsum is simply dummy text of the printing.</p> -->
-    </div>
-
-    <div class="row contact-info">
-
-        <div class="col-md-4">
-        <div class="contact-address">
-            <i class="fa fa-map-marker"></i>
-            <h3>Oficina</h3>
-            <address>Virtual</address>
-        </div>
+        {{-- HEADER --}}
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Contáctanos</h2>
+            <p class="text-muted">
+                Estamos listos para ayudarte con licencias digitales originales y soporte personalizado.
+            </p>
         </div>
 
-        <div class="col-md-4">
-        <div class="contact-phone">
-            <i class="fa fa-phone"></i>
-            <h3>Teléfono</h3>
-            <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
-        </div>
-        </div>
+        {{-- INFO --}}
+        <div class="row g-4 text-center mb-5">
 
-        <div class="col-md-4">
-        <div class="contact-email">
-            <i class="fa fa-envelope"></i>
-            <h3>Email</h3>
-            <p><a href="mailto:info@example.com">info@example.com</a></p>
-        </div>
-        </div>
-
-    </div>
-
-    <div class="row container-lg">
-        <div class="col-md-6">
-            <h5>Message us</h5>
-            <p>Estamos listos para ayudarte a activar y optimizar tus equipos con licencias digitales originales y seguras.
-                Si tienes consultas, deseas una cotización o necesitas asesoría para elegir la licencia ideal para tu PC, nuestro equipo te atenderá de manera rápida y personalizada.</p>
-        </div>
-        <div class="col-md-6">
-            <div class="form">
-                <div id="sendmessage">Your message has been sent. Thank you!</div>
-                <div id="errormessage"></div>
-                <form action="" method="post" role="form" class="contactForm">
-                <div class="form-row">
-                    <div class="form-group py-2">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                    <div class="validation"></div>
-                    </div>
-                    <div class="form-group py-2">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                    <div class="validation"></div>
-                    </div>
+            <div class="col-md-4">
+                <div class="contact-info-card">
+                    <i class="bi bi-geo-alt"></i>
+                    <h6>Oficina</h6>
+                    <p>Atención virtual</p>
                 </div>
-                <div class="form-group py-2">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                    <div class="validation"></div>
-                </div>
-                <div class="form-group py-2">
-                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                    <div class="validation"></div>
-                </div>
-                <div class="text-center"><button type="submit">Enviar mensaje</button></div>
-                </form>
             </div>
+
+            <div class="col-md-4">
+                <div class="contact-info-card">
+                    <i class="bi bi-telephone"></i>
+                    <h6>Teléfono</h6>
+                    <p>
+                        <a href="tel:{{ $company->phone }}">
+                            {{ $company->phone }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="contact-info-card">
+                    <i class="bi bi-envelope"></i>
+                    <h6>Email</h6>
+                    <p>
+                        <a href="mailto:{{ $company->email }}">
+                            {{ $company->email }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
         </div>
-    </div>
+
+        {{-- FORM --}}
+        <div class="row g-4 align-items-center">
+
+            <div class="col-md-6">
+                <div class="container">
+                    <h5 class="fw-semibold">Escríbenos</h5>
+                    <p class="text-muted">
+                        Estamos listos para ayudarte a activar y optimizar tus equipos con licencias digitales originales y seguras.
+                        Si tienes consultas, deseas una cotización o necesitas asesoría para elegir la licencia ideal para tu PC, nuestro equipo te atenderá de manera rápida y personalizada.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="contact-form-card">
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('contact.send') }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <input type="text"
+                                   name="name"
+                                   class="form-control"
+                                   placeholder="Nombre completo"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="Correo electrónico"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text"
+                                   name="subject"
+                                   class="form-control"
+                                   placeholder="Asunto"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea name="message"
+                                      rows="4"
+                                      class="form-control"
+                                      placeholder="Escribe tu mensaje"
+                                      required></textarea>
+                        </div>
+
+                        <button class="btn btn-primary w-100">
+                            Enviar mensaje
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </section>

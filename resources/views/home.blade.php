@@ -4,487 +4,167 @@
 
 @include('partials.menu')
 
-<section style="background-image: url('images/banner1.jpg');background-repeat: no-repeat;background-size: cover;">
-    <div class="container-lg py-5">
-    <div class="row">
-        <div class="col-lg-6 pt-5 mt-5">
-            <h2 class="display-1 ls-1"><span class="fw-bold text-primary">Licencias digitales 100% originales</span></h2>
-            <p class="fs-4">"Activa tu software al instante y sin complicaciones"</p>
-            <div class="d-flex gap-3">
-                <a href="#" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">comprar ahora</a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-3 g-0 justify-content-center">
-        <div class="col">
-        <div class="card border-0 bg-primary rounded-0 p-4 text-light">
-            <div class="row">
-            <div class="col-md-3 text-center">
-                <svg width="60" height="60"><use xlink:href="#fresh"></use></svg>
-            </div>
-            <div class="col-md-9">
-                <div class="card-body p-0">
-                <h5 class="text-light">Fresh from farm</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+{{-- ===================== HERO CAROUSEL ===================== --}}
+<section class="hero-carousel">
+    <div class="swiper heroSwiper">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide hero-slide" style="background-image:url('/images/banner1.jpg')">
+                <div class="container-fluid">
+                    <div class="row align-items-center min-vh-70">
+                        <div class="col-lg-6 hero-text px-5">
+                            <h1>Licencias digitales 100% originales</h1>
+                            <p>Activa tu software al instante y sin complicaciones</p>
+                            <a href="#" class="btn btn-hero">Comprar ahora</a>
+                        </div>
+                        <div class="col-lg-6 hero-image"></div>
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
-        </div>
-        <div class="col">
-        <div class="card border-0 bg-secondary rounded-0 p-4 text-light">
-            <div class="row">
-            <div class="col-md-3 text-center">
-                <svg width="60" height="60"><use xlink:href="#organic"></use></svg>
-            </div>
-            <div class="col-md-9">
-                <div class="card-body p-0">
-                <h5 class="text-light">100% Organic</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+            <div class="swiper-slide hero-slide" style="background-image:url('/images/banner1.jpg')">
+                <div class="container-fluid">
+                    <div class="row align-items-center min-vh-70">
+                        <div class="col-lg-6 hero-text px-5">
+                            <h1>Licencias digitales 100% originales</h1>
+                            <p>Activa tu software al instante y sin complicaciones</p>
+                            <a href="#" class="btn btn-hero">Comprar ahora</a>
+                        </div>
+                        <div class="col-lg-6 hero-image"></div>
+                    </div>
                 </div>
             </div>
-            </div>
+
         </div>
-        </div>
-        <div class="col">
-        <div class="card border-0 bg-danger rounded-0 p-4 text-light">
-            <div class="row">
-            <div class="col-md-3 text-center">
-                <svg width="60" height="60"><use xlink:href="#delivery"></use></svg>
-            </div>
-            <div class="col-md-9">
-                <div class="card-body p-0">
-                <h5 class="text-light">Free delivery</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div> -->
-    
+        <div class="swiper-pagination"></div>
     </div>
 </section>
 
-<section class="py-5 overflow-hidden">
-    <div class="container-lg">
-    <div class="row">
-        <div class="col-md-12">
-
-        <div class="section-header d-flex flex-wrap justify-content-between mb-5">
-            <h2 class="section-title">Categorías</h2>
-
-            <div class="d-flex align-items-center">
-            <!-- <a href="#" class="btn btn-primary me-2">Ver todos</a> -->
-            <div class="swiper-buttons">
-                <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
-                <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
-            </div>
-            </div>
-        </div>
-        
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-
-        <div class="category-carousel swiper">
-            <div class="swiper-wrapper" style="    overflow: inherit !important;">
-            @foreach($categories as $cat)
-            <a href="#" class="nav-link swiper-slide text-center" style="box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.08);">
-                <img src="storage/{{$cat->image}}" height="100" class="" alt="Category Thumbnail">
-                <h4 class="fs-6 mt-3 fw-normal category-title">{{$cat->name}}</h4>
-            </a>
-            @endforeach
+{{-- ===================== CATEGORÍAS ===================== --}}
+<section class="categories-section">
+    <div class="container container-fluid">
+        <div class="swiper categoriesSwiper">
+            <div class="swiper-wrapper">
+                @foreach($categories as $cat)
+                <div class="swiper-slide">
+                    <div class="product-card my-4">
+                        <img class="d-flex m-auto" src="/storage/{{ $cat->image }}" alt="{{ $cat->name }}" height="100">
+                        <h6 class="mt-3 text-center">{{ $cat->name }}</h6>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
-
-        </div>
-    </div>
     </div>
 </section>
 
-@if($products_oferta->count() > 0)
-<section class="pb-4 my-4">
-    <div class="container-lg">
+{{-- ===================== OFERTAS ===================== --}}
+@if($products_oferta->count())
+<section class="offers-section">
+    <div class="container offers-card">
+        <div class="row align-items-center">
+            <div class="col-lg-3 text-center text-white">
+                <h3>Licencias en oferta</h3>
+                <p>Compra ahora!</p>
+                <a class="my-4" href="#" style="text-decoration: none; color: white;">Ver todos</a>
+            </div>
 
-    <div class="bg-warning1 pt-5 rounded-5">
-        <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h2 class="mt-5 text-white text-center">Licencias en oferta</h2>
-                <p class="text-white text-center">Compra ahora!</p>
-                
-                <div class="d-flex gap-2 flex-wrap mb-5">
-                    <a class="btn btn-primary my-4 d-flex m-auto" href="#">Ver ofertas</a>
+            <div class="col-lg-9">
+                <div class="swiper offersSwiper">
+                    <div class="swiper-wrapper">
+                        @foreach($products_oferta as $oferta)
+                        @php $imgs = json_decode($oferta->images); @endphp
+                        <div class="swiper-slide offer-product">
+                            <span class="discount-badge">-10%</span>
+                            <img src="/storage/{{ $imgs[0] }}" height="150">
+                            <h6>{{ $oferta->name }}</h6>
+                            <div class="price-row">
+                                <del>S/. {{ number_format($oferta->price*1.1,2) }}</del>
+                                <strong>S/. {{ number_format($oferta->price,2) }}</strong>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <!-- <img src="images/banner-onlineapp.png" alt="phone" class="img-fluid"> -->
-                <!-- <div class="row">
-                    <div class="col-md-12">
 
-                    <div class="product-grid row">
-                            
-                        <div class="col-md-4">
-                            <div class="product-item">
-                                <figure>
-                                <a href="index.html" title="Product Title">
-                                    <img src="images/product-thumb-1.png" alt="Product Thumbnail" class="tab-image">
-                                </a>
-                                </figure>
-                                <div class="d-flex flex-column text-center">
-                                <h3 class="fs-6 fw-normal">Whole Wheat Sandwich Bread</h3>
-                                <div>
-                                    <span class="rating">
-                                    <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                    <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                    <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                    <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                    <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                                    </span>
-                                    <span>(222)</span>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <del>$24.00</del>
-                                    <span class="text-dark fw-semibold">$18.00</span>
-                                    <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span>
-                                </div>
-                                <div class="button-area p-3 pt-0">
-                                    <div class="row g-1 mt-2">
-                                    <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                                    <div class="col-7"><a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"><svg width="18" height="18"><use xlink:href="#cart"></use></svg> Add to Cart</a></div>
-                                    <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><svg width="18" height="18"><use xlink:href="#heart"></use></svg></a></div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                        <div class="product-item">
-                            <figure>
-                            <a href="index.html" title="Product Title">
-                                <img src="images/product-thumb-2.png" alt="Product Thumbnail" class="tab-image">
-                            </a>
-                            </figure>
-                            <div class="d-flex flex-column text-center">
-                            <h3 class="fs-6 fw-normal">Whole Grain Oatmeal</h3>
-                            <div>
-                                <span class="rating">
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                                </span>
-                                <span>(41)</span>
-                            </div>
-                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                <del>$54.00</del>
-                                <span class="text-dark fw-semibold">$50.00</span>
-                                <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span>
-                            </div>
-                            <div class="button-area p-3 pt-0">
-                                <div class="row g-1 mt-2">
-                                <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                                <div class="col-7"><a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"><svg width="18" height="18"><use xlink:href="#cart"></use></svg> Add to Cart</a></div>
-                                <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><svg width="18" height="18"><use xlink:href="#heart"></use></svg></a></div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="col-md-4">
-                        <div class="product-item">
-                            <figure>
-                            <a href="index.html" title="Product Title">
-                                <img src="images/product-thumb-3.png" alt="Product Thumbnail" class="tab-image">
-                            </a>
-                            </figure>
-                            <div class="d-flex flex-column text-center">
-                            <h3 class="fs-6 fw-normal">Sharp Cheddar Cheese Block</h3>
-                            <div>
-                                <span class="rating">
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                                </span>
-                                <span>(32)</span>
-                            </div>
-                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                <del>$14.00</del>
-                                <span class="text-dark fw-semibold">$12.00</span>
-                                <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span>
-                            </div>
-                            <div class="button-area p-3 pt-0">
-                                <div class="row g-1 mt-2">
-                                <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                                <div class="col-7"><a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"><svg width="18" height="18"><use xlink:href="#cart"></use></svg> Add to Cart</a></div>
-                                <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><svg width="18" height="18"><use xlink:href="#heart"></use></svg></a></div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>        
-                        
-                        
-                    </div>
-                    
-                    </div>
-                </div> -->
-                <section id="latest-products" class="products-carousel">
-                    <div class="overflow-hidden w-100">                    
-                        <div class="row">
-                            <div class="col-md-12">
-
-                            <div class="swiper">
-                                <div class="swiper-wrapper">
-                                    @foreach($products_oferta as $oferta)
-                                    <div class="product-item swiper-slide">
-                                        <figure>
-                                        <a href="index.html" title="Product Title">
-                                            @php 
-                                                $imagenes = json_decode($oferta->images);
-                                            @endphp
-                                            <img src="storage/{{$imagenes[0]}}" style="max-height: 150px;" alt="Product Thumbnail" class="tab-image">
-                                        </a>
-                                        </figure>
-                                        <div class="d-flex flex-column text-center">
-                                        <h3 class="fs-6 fw-normal">{{$oferta->name}}</h3>
-                                        <div>
-                                            <span class="rating">
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                                            </span>
-                                            <span>(222)</span>
-                                        </div>
-                                        <div class="d-flex justify-content-center align-items-center gap-2">
-                                            <del>S/. {{$oferta->price * 1.10}}</del>
-                                            <span class="text-dark fw-semibold">S/. {{$oferta->price}}</span>
-                                            <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span>
-                                        </div>
-                                        <div class="button-area p-3 pt-0">
-                                            <div class="row g-1 mt-2">
-                                            <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                                            <div class="col-7"><a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"><svg width="18" height="18"><use xlink:href="#cart"></use></svg> Add to cart</a></div>
-                                            <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><i class="fab fa-whatsapp"></i></a></div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                                                        
-                                </div>
-                            </div>
-                            <!-- / products-carousel -->
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-
-                            <div class="section-header d-flex justify-content-between my-4">
-                                
-                                <h2 class="section-title"></h2>
-
-                                <div class="d-flex align-items-center">
-                                <div class="swiper-buttons">
-                                    <button class="swiper-prev products-carousel-prev btn btn-white">❮</button>
-                                    <button class="swiper-next products-carousel-next btn btn-white">❯</button>
-                                </div>  
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-            </div>
         </div>
-        </div>
-    </div>
-    
     </div>
 </section>
 @endif
 
-<section class="pb-5">
-    <div class="container-lg">
-
-    <div class="row">
-        <div class="col-md-12">
-
-        <div class="section-header d-flex flex-wrap justify-content-between my-4">
-            
-            <h2 class="section-title">Productos más vendidos</h2>
-
-            <div class="d-flex align-items-center">
-            <a href="#" class="btn btn-primary rounded-1">Ver todos</a>
-            </div>
+{{-- ===================== MÁS VENDIDOS ===================== --}}
+<section class="products-section py-5">
+    <div class="container">
+        <div class="section-header">
+            <h2>Productos más vendidos</h2>
+            <a href="{{route('store.tienda')}}">Ver todos</a>
         </div>
-        
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-12">
+        <hr>
 
-        <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
+        <div class="row g-4">
             @foreach($products_vendidos as $product)
-            <div class="col">
-                <div class="product-item">
-                    <figure>
-                    <a href="index.html" title="Product Title">
-                        @php
-                            $images = json_decode($product->images);
-                        @endphp
-                        <img src="storage/{{$images[0]}}" alt="Product Thumbnail" class="tab-image">
-                    </a>
-                    </figure>
-                    <div class="d-flex flex-column text-center">
-                    <h3 class="fs-6 fw-normal">{{$product->name}}</h3>
-                    <div>
-                        <span class="rating">
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                        </span>
-                        <span>(222)</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center gap-2">
-                        <del>$24.00</del>
-                        <span class="text-dark fw-semibold">$18.00</span>
-                        <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span>
-                    </div>
-                    <div class="button-area p-3 pt-0">
-                        <div class="row g-1 mt-2">
-                        <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                        <div class="col-7"><a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"><svg width="18" height="18"><use xlink:href="#cart"></use></svg> Add to Cart</a></div>
-                        <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><svg width="18" height="18"><use xlink:href="#heart"></use></svg></a></div>
-                        </div>
-                    </div>
+            @php $imgs = json_decode($product->images); @endphp
+            <div class="col-md-4 col-lg-3">
+                <div class="product-card" style="box-shadow: inset;">
+                    <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180">
+                    <div class="fade-line"></div>
+                    <h6>{{ $product->name }}</h6>
+                    <div class="product-footer">
+                        <span>S/. {{ $product->price }}</span>
+                        <span>⭐ 4.8</span>
                     </div>
                 </div>
             </div>
-            @endforeach           
-            
-        </div>
-        <!-- / product-grid -->
-
-
-        </div>
-    </div>
-    </div>
-</section>
-
-<section class="pb-4 my-4">
-    <div class="container-lg">
-
-    <div class="pt-5 rounded-5" style="background-image: url('images/banner2.png');">
-        <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-5">
-                <img src="images/licencias.png" alt="phone" class="img-fluid">
-            </div>
-            <div class="col-md-4">
-                <h2 class="mt-5" style="font-weight: bold;">NUESTROS COMBOS</h2>
-                <p class="text-black">Optimiza tu equipo con nuestros combos de licencias digitales originales, ideales para hogar, negocios y empresas.</p>
-                <div class="d-flex gap-2 flex-wrap mb-5">
-                    <a class="d-flex m-auto btn btn-primary" href="#">Conoce nuestros combos</a>
-                </div>
-            </div>            
-        </div>
-        </div>
-    </div>
-    
-    </div>
-</section>
-
-@if($combos->count() > 0)
-<section class="pb-5">
-    <div class="container-lg">
-
-    <div class="row">
-        <div class="col-md-12">
-
-        <div class="section-header d-flex flex-wrap justify-content-between my-4">
-            
-            <h2 class="section-title">Tus combos</h2>
-
-            <div class="d-flex align-items-center">
-            <a href="#" class="btn btn-primary rounded-1">Ver todos</a>
-            </div>
-        </div>
-        
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-12">
-
-        <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
-              
-            @foreach($combos as $combo)
-            <div class="col">
-                <div class="product-item">
-                    <figure>
-                    <a href="index.html" title="Product Title">
-                        @php
-                            $imagenes = json_decode($combo->images);
-                        @endphp
-                        <img src="storage/{{$imagenes[0]}}" alt="Product Thumbnail" class="tab-image">
-                    </a>
-                    </figure>
-                    <div class="d-flex flex-column text-center">
-                    <h3 class="fs-6 fw-normal">{{$combo->name}}</h3>
-                    <div>
-                        <span class="rating">
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                        <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                        </span>
-                        <span>(222)</span>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center gap-2">
-                        <!-- <del>$24.00</del> -->
-                        <span class="text-dark fw-semibold">S/. {{$combo->price}}</span>
-                        <!-- <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span> -->
-                    </div>
-                    <div class="button-area p-3 pt-0">
-                        <div class="row g-1 mt-2">
-                        <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                        <div class="col-7"><a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"><svg width="18" height="18"><use xlink:href="#cart"></use></svg> Add to Cart</a></div>
-                        <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><svg width="18" height="18"><use xlink:href="#heart"></use></svg></a></div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>    
             @endforeach
-            
-        </div>
-        <!-- / product-grid -->
-
-
         </div>
     </div>
+</section>
+
+{{-- ===================== COMBOS BANNER ===================== --}}
+<section class="container">
+    <div class="combo-banner px-5" style="background-image:url('/images/banner2.png'); border-radius: 10px;">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="images/licencias.png" alt="" width="100%">
+            </div>
+            <div class="col-lg-6 text-end">
+                <h2>NUESTROS COMBOS</h2>
+                <p>Optimiza tu equipo con nuestros combos de licencias digitales originales, ideales para hogar, negocios y empresas.</p>
+                <a href="#" class="btn btn-primary">Conoce nuestros combos</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ===================== TUS COMBOS ===================== --}}
+@if($combos->count())
+<section class="products-section py-5">
+    <div class="container">
+        <div class="section-header">
+            <h2>Tus Combos</h2>
+            <a href="{{route('store.tienda')}}">Ver todos</a>
+        </div>
+        <hr>
+
+        <div class="row g-4">
+            @foreach($combos as $combo)
+            @php $imgs = json_decode($combo->images); @endphp
+            <div class="col-md-4 col-lg-3">
+                <div class="product-card">
+                    <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180">
+                    <div class="fade-line"></div>
+                    <h6>{{ $combo->name }}</h6>
+                    <div class="product-footer">
+                        <span>S/. {{ $combo->price }}</span>
+                        <span>⭐ 4.9</span>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
     </div>
 </section>
 @endif
-
 
 @include('partials.footer')
 @endsection

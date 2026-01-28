@@ -8,16 +8,16 @@
             <!-- <h5 class="text-white">JHONATAN FERNÁNDEZ</h5> -->
             <ul class="menu-list list-unstyled px-4">
                 <li class="menu-item">
-                    <a href="#" class="text-white nav-link">Inicio </a>
+                    <a href="/" class="text-white nav-link">Inicio </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="text-white nav-link">Tienda</a>
+                    <a href="/tienda" class="text-white nav-link">Tienda</a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="text-white nav-link">Contactos</a>
+                    <a href="/contacto" class="text-white nav-link">Contactos</a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="text-white nav-link">Blog</a>
+                    <a href="/blog" class="text-white nav-link">Blog</a>
                 </li>
             </ul>            
         </div>
@@ -48,22 +48,22 @@
                 <ul class="d-flex justify-content-center list-unstyled gap-2">
                     <li>
                     <a href="#" class="btn btn-outline-light">
-                        <svg class="text-white" width="16" height="16"><use xlink:href="#facebook"></use></svg>
+                        <i class="fab fa-facebook-f"></i>
                     </a>
                     </li>
                     <li>
                     <a href="#" class="btn btn-outline-light">
-                        <svg class="text-white" width="16" height="16"><use xlink:href="#twitter"></use></svg>
+                        <i class="fab fa-x-twitter"></i>
                     </a>
                     </li>                    
                     <li>
                     <a href="#" class="btn btn-outline-light">
-                        <svg class="text-white" width="16" height="16"><use xlink:href="#instagram"></use></svg>
+                        <i class="fab fa-instagram"></i>
                     </a>
                     </li>
                     <li>
                     <a href="#" class="btn btn-outline-light">
-                        <svg class="text-white" width="16" height="16"><use xlink:href="#youtube"></use></svg>
+                        <i class="fab fa-youtube"></i>
                     </a>
                     </li>
                 </ul>
@@ -77,10 +77,10 @@
 <div id="footer-bottom" style="background-color: #021736;">
     <div class="container-lg pt-2">
         <div class="row">
-            <div class="col-md-6 copyright">
+            <div class="col-md-4 copyright">
             <p class="text-white">© 2026 GRUPO VESERGENPERU.</p>
             </div>
-            <div class="col-md-6 credit-link text-start text-md-end">
+            <div class="col-md-8 credit-link text-start text-md-end">
                 <a class="text-decoration-none text-white px-2" href="#">Políticas de privacidad</a>
                 <a class="text-decoration-none text-white px-2" href="#">Políticas de reembolso</a>
                 <a class="text-decoration-none text-white px-2" href="#">Términos del servicio</a>

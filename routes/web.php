@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/tienda', [App\Http\Controllers\HomeController::class, 'tienda'])->name('tienda');
+Route::get('/tienda', [App\Http\Controllers\HomeController::class, 'tienda'])->name('store.tienda');
+
 Route::get('/contacto', [App\Http\Controllers\HomeController::class, 'contact'])->name('contacto');
+Route::post('/contacto', [HomeController::class, 'send'])->name('contact.send');
+
 Route::get('/blog', [App\Http\Controllers\HomeController::class, 'blog'])->name('blog');
 
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');

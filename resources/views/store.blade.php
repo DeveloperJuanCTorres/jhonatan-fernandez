@@ -4,7 +4,7 @@
 
 @include('partials.menu')
 
-<section class="py-5 overflow-hidden px-4">
+<!-- <section class="py-5 overflow-hidden px-4">
     <div class="container-lg">
     <div class="row">
         <div class="col-md-12">
@@ -28,7 +28,7 @@
             <div class="swiper-wrapper">
                 @foreach($categories as $cat)
                 <a href="#" class="nav-link swiper-slide text-center">
-                    <img src="storage/{{$cat->image}}" width="70" class="" alt="Category Thumbnail">
+                    <img src="storage/{{$cat->image}}" height="50" class="" alt="Category Thumbnail">
                     <h4 class="fs-6 mt-3 fw-normal category-title">{{$cat->name}}</h4>
                 </a>
                 @endforeach    
@@ -38,73 +38,89 @@
         </div>
     </div>
     </div>
+</section> -->
+
+<section class="py-2 px-4">
+    <div class="container-lg">
+        <div class="row g-3">
+
+            @foreach($categories as $cat)
+            <div class="col-6 col-md-2">
+                <a href="{{ route('store.tienda', array_merge(request()->query(), ['category' => $cat->id])) }}"
+                   class="text-decoration-none text-dark">
+
+                    <div class="category-card {{ request('category') == $cat->id ? 'active' : '' }}">
+                        <img src="{{ asset('storage/'.$cat->image) }}" class="p-0">
+                        <div class="fw-semibold">{{ $cat->name }}</div>
+                    </div>
+
+                </a>
+            </div>
+            @endforeach
+
+        </div>
+    </div>
 </section>
 
-<section class="py-5 px-4">
-    <div class="row container-lg">
+<section class="container">
+    <div class="row py-2">
+
         <div class="col-md-3">
-            <div class="row align-items-center py-2">
-                <div class="col d-flex justify-content-between">
-                    <p class="mb-0">Filtro</p>
-                    <a href="#" class="btn btn-primary">Borrar todo</a>
-                </div>
-            </div>
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Marcas
-                    </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            @foreach($brands as $key => $brand)
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="{{$key}}">
-                                <label class="form-check-label" for="{{$key}}">
-                                    {{$brand->name}}
-                                </label>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Precio
-                    </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div class="price-filter">
-                        <label class="form-label fw-semibold">Rango</label>
+            <form method="GET" action="{{ route('store.tienda') }}">
+            <div class="filter-card p-4">
 
-                        <input type="range"
-                            class="form-range"
-                            min="0"
-                            max="1000"
-                            step="10"
-                            id="priceRange">
+                <h5 class="filter-title">Filtros</h5>
 
-                        <div class="d-flex justify-content-between">
-                            <span>S/ 0</span>
-                            <span id="priceValue">S/ 500</span>
-                            <span>S/ 1000</span>
-                        </div>
+                {{-- CATEGORÍA --}}
+                <input type="hidden" name="category" value="{{ request('category') }}">
+
+                {{-- MARCAS --}}
+                <div class="mb-4">
+                    <p class="fw-semibold mb-2">Marcas</p>
+                    @foreach($brands as $brand)
+                    <div class="form-check filter-item">
+                        <input class="form-check-input"
+                            type="radio"
+                            name="brand"
+                            value="{{ $brand->id }}"
+                            onchange="this.form.submit()"
+                            {{ request('brand') == $brand->id ? 'checked' : '' }}>
+                        <label class="form-check-label">{{ $brand->name }}</label>
                     </div>
-                    </div>
-                    </div>
+                    @endforeach
                 </div>
+
+                {{-- PRECIO --}}
+                <div class="mb-3">
+                    <p class="fw-semibold">Precio máximo</p>
+                    <input type="range"
+                        name="price"
+                        min="0"
+                        max="1000"
+                        step="10"
+                        value="{{ request('price', 1000) }}"
+                        oninput="priceValue.innerText='S/ '+this.value"
+                        onchange="this.form.submit()"
+                        class="form-range">
+                    <span id="priceValue">S/ {{ request('price',1000) }}</span>
+                </div>
+
+                <a href="{{ route('store.tienda') }}" class="btn btn-outline-secondary w-100 mt-3">
+                    Limpiar filtros
+                </a>
+
             </div>
+            </form>
         </div>
 
         <div class="col-md-9">
             <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3">
                 
                 @foreach($products as $product)
-                <div class="col">
-                    <div class="product-item">
+                <div class="col pt-2">
+                    <div class="product-item product-card"
+                        data-price="{{ $product->price }}"
+                        data-brand="{{ $product->brand_id }}">
                         <figure>
                         <a href="index.html" title="Product Title">
                             <img src="images/licencias.png" width="100%" alt="Product Thumbnail" class="tab-image">
@@ -129,21 +145,19 @@
                         </div>
                         <div class="button-area p-3 pt-0">
                             <div class="row g-1 mt-2">
-                            <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                            
-                            <div class="col-7">
-                                <button href="" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart"
-                                    data-id="{{ $product->id }}"
-                                    data-qty="1">
-
-                                    <svg width="18" height="18">
-                                        <use xlink:href="#cart"></use>
-                                    </svg> 
-                                    Agregar al carrito
-                                </button>
-                            </div>
-
-                            <div class="col-2"><a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6"><svg width="18" height="18"><use xlink:href="#heart"></use></svg></a></div>
+                                <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
+                                
+                                <div class="col-9">
+                                    <button type="button"
+                                        class="btn btn-success rounded-1 p-2 fs-7 btn-whatsapp w-100"
+                                        data-name="{{ $product->name }}"
+                                        data-price="{{ $product->price }}"
+                                        data-id="{{ $product->id }}">
+                                        
+                                        <i class="bi bi-cart-fill"></i>
+                                        Comprar
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         </div>
@@ -229,4 +243,75 @@
         });
     });
 </script>
+
+<script>
+    const products = document.querySelectorAll('.product-item');
+    const priceRange = document.getElementById('priceRange');
+    const priceValue = document.getElementById('priceValue');
+    const brandRadios = document.querySelectorAll('input[name="brand"]');
+    const clearBtn = document.getElementById('clearFilters');
+
+    priceValue.textContent = 'S/ ' + priceRange.value;
+
+    function filterProducts() {
+        const maxPrice = parseFloat(priceRange.value);
+        const selectedBrand = document.querySelector('input[name="brand"]:checked')?.value;
+
+        products.forEach(product => {
+            const price = parseFloat(product.dataset.price);
+            const brand = product.dataset.brand;
+
+            let visible = true;
+
+            if (price > maxPrice) visible = false;
+            if (selectedBrand && brand !== selectedBrand) visible = false;
+
+            product.closest('.col').style.display = visible ? '' : 'none';
+        });
+    }
+
+    priceRange.addEventListener('input', () => {
+        priceValue.textContent = 'S/ ' + priceRange.value;
+        filterProducts();
+    });
+
+    brandRadios.forEach(radio =>
+        radio.addEventListener('change', filterProducts)
+    );
+
+    clearBtn.addEventListener('click', () => {
+        priceRange.value = 1000;
+        priceValue.textContent = 'S/ 1000';
+        brandRadios.forEach(r => r.checked = false);
+        filterProducts();
+    });
+</script>
+
+<script>
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.btn-whatsapp');
+        if (!btn) return;
+
+        const name = btn.dataset.name;
+        const price = btn.dataset.price;
+        const qty = btn.closest('.product-item')
+                    .querySelector('.quantity')?.value || 1;
+
+        const phone = "{{ preg_replace('/\D/', '', $company->phone) }}";
+
+        const message = `
+    Hola 👋, estoy interesado en este producto:
+
+    📦 *Producto:* ${name}
+    💰 *Precio:* S/ ${price}
+    🔢 *Cantidad:* ${qty}
+
+    ¿Está disponible?
+        `.trim();
+
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    });
+</script>
+
 @endsection

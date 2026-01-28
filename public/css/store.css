@@ -1,0 +1,121 @@
+/* ================= FILTROS ================= */
+.filter-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 90px;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-header h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.btn-clear {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #ff7a00;
+    cursor: pointer;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+}
+
+.filter-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* Opciones */
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.filter-option input {
+    accent-color: #ff7a00;
+}
+
+/* Precio */
+#priceRange {
+    width: 100%;
+    accent-color: #ff7a00;
+}
+
+.price-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+
+
+
+/* ===== CARDS GENERALES ===== */
+.filter-card,
+.category-card,
+.product-item {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    transition: all .25s ease;
+}
+
+.category-card {
+    padding: 20px 10px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.category-card img {
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+}
+
+/* categoria seleccionada */
+.category-card.active {
+    border-color: #0d6efd;
+    box-shadow: 0 10px 25px rgba(13,110,253,.35);
+}
+
+/* filtros */
+.filter-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.filter-item label {
+    cursor: pointer;
+}
+
+/* productos */
+.product-item {
+    padding: 15px;
+}
+
+.product-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.15);
+}

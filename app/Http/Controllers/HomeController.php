@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Product;
 use App\Models\Taxonomy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -36,19 +37,63 @@ class HomeController extends Controller
         return view('home',compact('categories','products_vendidos','combos','products_oferta','company'));
     }
 
-    public function tienda()
+    public function tienda(Request $request)
     {
-        $categories = Taxonomy::all();
-        $products = Product::all();
-        $company = Company::first();
-        $brands = Brand::all();
-        return view('store', compact('products','categories','company','brands'));
+        $products = Product::query();
+
+        // 🔍 BUSCADOR POR NOMBRE
+        if ($request->filled('q')) {
+            $products->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        // 📂 CATEGORÍA
+        if ($request->filled('category')) {
+            $products->where('taxonomy_id', $request->category);
+        }
+
+        // 🏷️ MARCA
+        if ($request->filled('brand')) {
+            $products->where('brand_id', $request->brand);
+        }
+
+        // 💰 PRECIO
+        if ($request->filled('price')) {
+            $products->where('price', '<=', $request->price);
+        }
+
+        return view('store', [
+            'products'   => $products->latest()->paginate(12)->withQueryString(),
+            'categories' => Taxonomy::all(),
+            'brands'     => Brand::all(),
+            'company'    => Company::first(),
+        ]);
     }
+
 
     public function contact()
     {
         $company = Company::first();
         return view('contact', compact('company'));
+    }
+
+    public function send(Request $request)
+    {
+        $request->validate([
+            'name'    => 'required',
+            'email'   => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        Mail::raw(
+            "Nombre: {$request->name}\nEmail: {$request->email}\n\n{$request->message}",
+            function ($mail) use ($request) {
+                $mail->to(config('mail.from.address'))
+                     ->subject('Contacto: '.$request->subject);
+            }
+        );
+
+        return back()->with('success', 'Mensaje enviado correctamente.');
     }
 
     public function blog()
