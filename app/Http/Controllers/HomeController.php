@@ -30,9 +30,9 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Taxonomy::all();
-        $products_vendidos = Product::limit(5)->get();
+        $products_vendidos = Product::limit(4)->get();
         $products_oferta = Product::where('oferta', '=', 1)->get();
-        $combos = Combo::all();
+        $combos = Combo::limit(4)->get();
         $company = Company::first();
         return view('home',compact('categories','products_vendidos','combos','products_oferta','company'));
     }
