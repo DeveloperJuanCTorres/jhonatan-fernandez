@@ -34,6 +34,7 @@ class HomeController extends Controller
         $products_oferta = Product::where('oferta', '=', 1)->get();
         $combos = Combo::limit(4)->get();
         $company = Company::first();
+        
         return view('home',compact('categories','products_vendidos','combos','products_oferta','company'));
     }
 
@@ -100,5 +101,27 @@ class HomeController extends Controller
     {
         $company = Company::first();
         return view('blog', compact('company'));
+    }
+
+    public function detalleProducto($slug)
+    {
+        $company = Company::first();
+        $product = Product::where('slug', $slug)->firstOrFail();
+        $similares = Product::where('taxonomy_id', $product->taxonomy_id)
+            ->where('id', '!=', $product->id)
+            ->limit(4)
+            ->get();
+        return view('detalle-producto', compact('product','company','similares'));
+    }
+
+    public function detalleCombo($slug)
+    {
+        $company = Company::first();
+        $product = Combo::where('slug', $slug)->firstOrFail();
+        $similares = Product::where('taxonomy_id', $product->taxonomy_id)
+            ->where('id', '!=', $product->id)
+            ->limit(4)
+            ->get();
+        return view('detalle-combo', compact('product','company','similares'));
     }
 }

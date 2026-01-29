@@ -73,15 +73,19 @@
                     <div class="swiper-wrapper">
                         @foreach($products_oferta as $oferta)
                         @php $imgs = json_decode($oferta->images); @endphp
-                        <div class="swiper-slide offer-product">
-                            <span class="discount-badge">-10%</span>
-                            <img src="/storage/{{ $imgs[0] }}" height="150">
-                            <h6>{{ $oferta->name }}</h6>
-                            <div class="price-row">
-                                <del>S/. {{ number_format($oferta->price*1.1,2) }}</del>
-                                <strong>S/. {{ number_format($oferta->price,2) }}</strong>
+                        
+                            <div class="swiper-slide offer-product">
+                                <a href="{{ route('store.producto.detalle', $oferta->slug) }}" class="text-decoration-none text-dark">
+                                <span class="discount-badge">-10%</span>
+                                <img src="/storage/{{ $imgs[0] }}" height="150">
+                                <h6>{{ $oferta->name }}</h6>
+                                <div class="price-row">
+                                    <del>S/. {{ number_format($oferta->price*1.1,2) }}</del>
+                                    <strong>S/. {{ number_format($oferta->price,2) }}</strong>
+                                </div>
+                                </a>
                             </div>
-                        </div>
+                        
                         @endforeach
                     </div>
                 </div>
@@ -105,15 +109,17 @@
             @foreach($products_vendidos as $product)
             @php $imgs = json_decode($product->images); @endphp
             <div class="col-md-4 col-lg-3">
-                <div class="product-card" style="box-shadow: inset;">
-                    <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180">
-                    <div class="fade-line"></div>
-                    <h6>{{ $product->name }}</h6>
-                    <div class="product-footer">
-                        <span>S/. {{ $product->price }}</span>
-                        <span>⭐ 4.8</span>
+                <a href="{{ route('store.producto.detalle', $product->slug) }}" class="text-decoration-none text-dark">
+                    <div class="product-card" style="box-shadow: inset;">
+                        <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180">
+                        <div class="fade-line"></div>
+                        <h6>{{ $product->name }}</h6>
+                        <div class="product-footer">
+                            <span>S/. {{ $product->price }}</span>
+                            <span>⭐ 4.8</span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             @endforeach
         </div>
@@ -150,15 +156,17 @@
             @foreach($combos as $combo)
             @php $imgs = json_decode($combo->images); @endphp
             <div class="col-md-4 col-lg-3">
-                <div class="product-card">
-                    <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180">
-                    <div class="fade-line"></div>
-                    <h6>{{ $combo->name }}</h6>
-                    <div class="product-footer">
-                        <span>S/. {{ $combo->price }}</span>
-                        <span>⭐ 4.9</span>
+                <a href="{{ route('store.combo.detalle', $combo->slug) }}" class="text-decoration-none text-dark">
+                    <div class="product-card">
+                        <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180">
+                        <div class="fade-line"></div>
+                        <h6>{{ $combo->name }}</h6>
+                        <div class="product-footer">
+                            <span>S/. {{ $combo->price }}</span>
+                            <span>⭐ 4.9</span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             @endforeach
         </div>

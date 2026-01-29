@@ -117,49 +117,50 @@
             <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3">
                 
                 @foreach($products as $product)
+                @php $imgs = json_decode($product->images); @endphp
                 <div class="col pt-2">
                     <div class="product-item product-card"
                         data-price="{{ $product->price }}"
                         data-brand="{{ $product->brand_id }}">
                         <figure>
-                        <a href="index.html" title="Product Title">
-                            <img src="images/licencias.png" width="100%" alt="Product Thumbnail" class="tab-image">
+                        <a href="{{ route('store.producto.detalle', $product->slug) }}" title="Product Title">
+                            <img src="/storage/{{ $imgs[0] }}" height="150" alt="Product Thumbnail" class="tab-image d-flex m-auto">
                         </a>
                         </figure>
                         <div class="d-flex flex-column text-center">
-                        <h3 class="fs-6 fw-normal">{{$product->name}}</h3>
-                        <div>
-                            <span class="rating">
-                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
-                            <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
-                            </span>
-                            <span>(222)</span>
-                        </div>
-                        <div class="d-flex justify-content-center align-items-center gap-2">
-                            <del>$24.00</del>
-                            <span class="text-dark fw-semibold">S/. {{$product->price}}</span>
-                            <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span>
-                        </div>
-                        <div class="button-area p-3 pt-0">
-                            <div class="row g-1 mt-2">
-                                <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
-                                
-                                <div class="col-9">
-                                    <button type="button"
-                                        class="btn btn-success rounded-1 p-2 fs-7 btn-whatsapp w-100"
-                                        data-name="{{ $product->name }}"
-                                        data-price="{{ $product->price }}"
-                                        data-id="{{ $product->id }}">
-                                        
-                                        <i class="bi bi-cart-fill"></i>
-                                        Comprar
-                                    </button>
+                            <h3 class="fs-6 fw-normal">{{$product->name}}</h3>
+                            <div>
+                                <span class="rating">
+                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
+                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
+                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
+                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-full"></use></svg>
+                                <svg width="18" height="18" class="text-warning"><use xlink:href="#star-half"></use></svg>
+                                </span>
+                                <span>(222)</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                <del>$24.00</del>
+                                <span class="text-dark fw-semibold">S/. {{$product->price}}</span>
+                                <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10% OFF</span>
+                            </div>
+                            <div class="button-area p-3 pt-0">
+                                <div class="row g-1 mt-2">
+                                    <div class="col-3"><input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1"></div>
+                                    
+                                    <div class="col-9">
+                                        <button type="button"
+                                            class="btn btn-success rounded-1 p-2 fs-7 btn-whatsapp w-100"
+                                            data-name="{{ $product->name }}"
+                                            data-price="{{ $product->price }}"
+                                            data-id="{{ $product->id }}">
+                                            
+                                            <i class="bi bi-cart-fill"></i>
+                                            Comprar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>       

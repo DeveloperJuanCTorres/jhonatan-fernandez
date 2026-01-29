@@ -33,6 +33,13 @@ Route::get('cart/clear', [App\Http\Controllers\CartController::class, 'clear'])-
 Route::post('cart/removeitem', [App\Http\Controllers\CartController::class, 'removeItem'])->name('removeitem');
 
 
+Route::get('/producto/{slug}', [HomeController::class, 'detalleProducto'])
+    ->name('store.producto.detalle');
+
+Route::get('/combo/{slug}', [HomeController::class, 'detalleCombo'])
+    ->name('store.combo.detalle');
+
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
