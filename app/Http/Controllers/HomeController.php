@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Combo;
 use App\Models\Company;
 use App\Models\Policy;
+use App\Models\Post;
 use App\Models\Product;
 use App\Models\Taxonomy;
 use Illuminate\Http\Request;
@@ -107,7 +108,8 @@ class HomeController extends Controller
     {
         $company = Company::first();
         $politicas = Policy::all();
-        return view('blog', compact('company', 'politicas'));
+        $posts = Post::all();
+        return view('blog', compact('company', 'politicas', 'posts'));
     }
 
     public function detalleProducto($slug)
@@ -141,5 +143,12 @@ class HomeController extends Controller
             ->limit(4)
             ->get();
         return view('detalle-combo', compact('product','company','similares', 'politicas'));
+    }
+
+    public function reclamaciones()
+    {
+        $company = Company::first();
+        $politicas = Policy::all();
+        return view('libro-reclamaciones', compact('company', 'politicas'));
     }
 }

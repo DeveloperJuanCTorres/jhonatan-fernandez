@@ -43,7 +43,10 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="footer-menu">
             <h5 class="widget-title text-white text-center">Libro de reclamaciones</h5>
-            <img class="d-flex m-auto" width="100" src="images/libro.png" alt="">
+            <a href="/libro-reclamaciones">
+                <img class="d-flex m-auto" width="100" src="images/libro.png" alt="">
+            </a>
+            
             <div class="social-links mt-3">
                 <ul class="d-flex justify-content-center list-unstyled gap-2">
                     <li>

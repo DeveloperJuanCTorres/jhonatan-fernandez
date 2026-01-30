@@ -32,6 +32,8 @@ Route::get('cart', [App\Http\Controllers\CartController::class, 'cart'])->name('
 Route::get('cart/clear', [App\Http\Controllers\CartController::class, 'clear'])->name('clear');
 Route::post('cart/removeitem', [App\Http\Controllers\CartController::class, 'removeItem'])->name('removeitem');
 
+Route::get('/libro-reclamaciones', [App\Http\Controllers\HomeController::class, 'reclamaciones'])->name('libro-reclamaciones');
+
 
 Route::get('/producto/{slug}', [HomeController::class, 'detalleProducto'])
     ->name('store.producto.detalle');

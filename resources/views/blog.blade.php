@@ -12,23 +12,23 @@
             <div class="col-md-9">
                 <div class="row g-4">
 
-                    @for($i = 1; $i <= 6; $i++)
+                    @foreach($posts as $post)
                     <div class="col-lg-4 col-md-6 col-12">
                         <article class="blog-card">
 
                             <div class="blog-image">
-                                <img src="https://denizhalil.com/wp-content/uploads/2024/05/Learning-Basic-Data-Types-in-Python-1024x580.png"
+                                <img src="{{asset('storage/' . $post->image)}}"
                                      alt="Blog Image">
-                                <span class="blog-date">10 Jun 2024</span>
+                                <span class="blog-date">10 Jun 2025</span>
                             </div>
 
                             <div class="blog-content">
                                 <h5 class="blog-title">
-                                    Learning Basic Data Types in Python
+                                    {{$post->title}}
                                 </h5>
 
                                 <p class="blog-excerpt">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel metus vel est fermentum consectetur.
+                                    {{ Str::limit($post->excerpt, 80) }}
                                 </p>
 
                                 <a href="#" class="blog-link">
@@ -38,7 +38,7 @@
 
                         </article>
                     </div>
-                    @endfor
+                    @endforeach
 
                 </div>
             </div>
