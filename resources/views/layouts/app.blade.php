@@ -13,6 +13,10 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <?php
+        $version = '1993.0.1';
+    ?>
+
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/vendor.css">
@@ -32,11 +36,11 @@
 
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/store.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/blog1.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/phone.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}?v=<?php echo $version ?>">
+    <link rel="stylesheet" href="{{ asset('css/store.css') }}?v=<?php echo $version ?>">
+    <link rel="stylesheet" href="{{ asset('css/blog1.css') }}?v=<?php echo $version ?>">
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}?v=<?php echo $version ?>">
+    <link rel="stylesheet" href="{{ asset('css/phone.css') }}?v=<?php echo $version ?>">
 
 
     <!-- Scripts -->
