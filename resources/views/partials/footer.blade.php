@@ -4,7 +4,7 @@
 
         <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="footer-menu">
-            <img src="storage/{{$company->logo_blanco}}"  height="150" alt="logo">
+            <img src="{{ asset('storage/' . $company->logo_blanco) }}"  height="150" alt="logo">
             <!-- <h5 class="text-white">JHONATAN FERNÁNDEZ</h5> -->
             <ul class="menu-list list-unstyled px-4">
                 <li class="menu-item">
