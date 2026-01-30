@@ -42,12 +42,51 @@
         <div class="col-md-6">
 
             <h2 class="fw-bold">{{ $product->name }}</h2>
+
+            <div class="d-flex flex-wrap gap-4 text-muted mb-2">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-patch-check-fill text-success me-2"></i>
+                    <small>100% Original</small>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-shield-check text-primary me-2"></i>
+                    <small>Garantía</small>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-headset text-warning me-2"></i>
+                    <small>Soporte Técnico</small>
+                </div>
+            </div>
+
             <p class="text-muted mb-1">
-                Marca: <strong>{{ $product->brand->name ?? 'Genérica' }}</strong>
+                <strong>{{ $product->description_corta }}</strong>
             </p>
-            <p class="text-muted">
-                Categoría: <strong>{{ $product->taxonomy->name ?? '-' }}</strong>
-            </p>
+
+            <div class="row text-muted mb-3">
+                <div class="col-5 col-md-4">
+                    <p class="mb-1">Marca:</p>
+                    <p class="mb-1">Categoría:</p>
+                    <p class="mb-1">Duración:</p>
+                    <p class="mb-1">Compatibilidad:</p>
+                </div>
+
+                <div class="col-7 col-md-8">
+                    <p class="mb-1 fw-semibold">
+                        {{ $product->brand->name ?? 'Genérica' }}
+                    </p>
+                    <p class="mb-1 fw-semibold">
+                        {{ $product->taxonomy->name ?? '-' }}
+                    </p>
+                    <p class="mb-1 fw-semibold">
+                        {{ $product->duracion ?? 'Ilimitada' }}
+                    </p>
+                    <p class="mb-1 fw-semibold">
+                        {{ $product->compatibilidad ?? 'Windows / Mac' }}
+                    </p>
+                </div>
+            </div>
 
             {{-- Card Precio --}}
             <div class="card shadow-sm p-4 my-4">
@@ -102,11 +141,20 @@
             </div>
 
             <div class="tab-pane fade" id="manuales">
-                {!! $product->manuales ?? 'No hay manuales disponibles.' !!}
+                @if($product->manuales)
+                    <a href="{{ asset('storage/' . $product->manuales) }}"
+                    class="btn btn-outline-primary"
+                    download>
+                        <i class="bi bi-file-earmark-arrow-down me-1"></i>
+                        Descargar manual
+                    </a>
+                @else
+                    <p class="text-muted">No hay manuales disponibles.</p>
+                @endif
             </div>
 
             <div class="tab-pane fade" id="faqs">
-                {!! $product->faqs ?? 'No hay preguntas frecuentes.' !!}
+                {!! $product->preguntas ?? 'No hay preguntas frecuentes.' !!}
             </div>
 
         </div>

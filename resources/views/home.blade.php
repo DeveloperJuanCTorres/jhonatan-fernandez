@@ -8,32 +8,20 @@
 <section class="hero-carousel">
     <div class="swiper heroSwiper">
         <div class="swiper-wrapper">
-
-            <div class="swiper-slide hero-slide" style="background-image:url('/images/banner1.jpg')">
+            @foreach($banners as $banner)
+            <div class="swiper-slide hero-slide" style="background-image:url('{{ Storage::url(str_replace('\\', '/', $banner->image)) }}')">
                 <div class="container-fluid">
                     <div class="row align-items-center min-vh-70">
                         <div class="col-lg-6 hero-text px-5">
-                            <h1>Licencias digitales 100% originales</h1>
-                            <p>Activa tu software al instante y sin complicaciones</p>
-                            <a href="#" class="btn btn-hero">Comprar ahora</a>
+                            <h1>{{$banner->titulo}}</h1>
+                            <p>{{$banner->descripcion}}</p>
+                            <a href="/tienda" class="btn btn-hero">Comprar ahora</a>
                         </div>
                         <div class="col-lg-6 hero-image"></div>
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide hero-slide" style="background-image:url('/images/banner1.jpg')">
-                <div class="container-fluid">
-                    <div class="row align-items-center min-vh-70">
-                        <div class="col-lg-6 hero-text px-5">
-                            <h1>Licencias digitales 100% originales</h1>
-                            <p>Activa tu software al instante y sin complicaciones</p>
-                            <a href="#" class="btn btn-hero">Comprar ahora</a>
-                        </div>
-                        <div class="col-lg-6 hero-image"></div>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
         <div class="swiper-pagination"></div>
     </div>
@@ -100,7 +88,7 @@
 <section class="products-section py-5">
     <div class="container">
         <div class="section-header">
-            <h2>Productos más vendidos</h2>
+            <h2 style="font-weight: 900;">Productos más vendidos</h2>
             <a href="{{route('store.tienda')}}">Ver todos</a>
         </div>
         <hr>
@@ -134,7 +122,7 @@
                 <img src="images/licencias.png" alt="" width="100%">
             </div>
             <div class="col-lg-6 text-end">
-                <h2>NUESTROS COMBOS</h2>
+                <h2 style="font-weight: 900;">NUESTROS COMBOS</h2>
                 <p>Optimiza tu equipo con nuestros combos de licencias digitales originales, ideales para hogar, negocios y empresas.</p>
                 <a href="#" class="btn btn-primary">Conoce nuestros combos</a>
             </div>
@@ -147,7 +135,7 @@
 <section class="products-section py-5">
     <div class="container">
         <div class="section-header">
-            <h2>Tus Combos</h2>
+            <h2 style="font-weight: 900;">Tus Combos</h2>
             <a href="{{route('store.tienda')}}">Ver todos</a>
         </div>
         <hr>

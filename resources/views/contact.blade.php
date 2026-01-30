@@ -20,7 +20,7 @@
 
             <div class="col-md-4">
                 <div class="contact-info-card">
-                    <i class="bi bi-geo-alt"></i>
+                    <i style="font-size: 40px;" class="bi bi-geo-alt"></i>
                     <h6>Oficina</h6>
                     <p>Atención virtual</p>
                 </div>
@@ -28,19 +28,7 @@
 
             <div class="col-md-4">
                 <div class="contact-info-card">
-                    <i class="bi bi-telephone"></i>
-                    <h6>Teléfono</h6>
-                    <p>
-                        <a href="tel:{{ $company->phone }}">
-                            {{ $company->phone }}
-                        </a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="contact-info-card">
-                    <i class="bi bi-envelope"></i>
+                    <i style="font-size: 40px;" class="bi bi-envelope"></i>
                     <h6>Email</h6>
                     <p>
                         <a href="mailto:{{ $company->email }}">
@@ -49,6 +37,18 @@
                     </p>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="contact-info-card">
+                    <i style="font-size: 40px;" class="bi bi-telephone"></i>
+                    <h6>Teléfono</h6>
+                    <p>
+                        <a href="tel:{{ $company->phone }}">
+                            {{ $company->phone }}
+                        </a>
+                    </p>
+                </div>
+            </div>            
 
         </div>
 

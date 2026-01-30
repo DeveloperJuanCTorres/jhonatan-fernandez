@@ -36,6 +36,9 @@ Route::post('cart/removeitem', [App\Http\Controllers\CartController::class, 'rem
 Route::get('/producto/{slug}', [HomeController::class, 'detalleProducto'])
     ->name('store.producto.detalle');
 
+    Route::get('/politicas/{slug}', [HomeController::class, 'detallePoliticas'])
+    ->name('politicas.detalle');
+
 Route::get('/combo/{slug}', [HomeController::class, 'detalleCombo'])
     ->name('store.combo.detalle');
 

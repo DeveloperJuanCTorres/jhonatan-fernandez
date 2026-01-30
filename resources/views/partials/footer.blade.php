@@ -47,22 +47,22 @@
             <div class="social-links mt-3">
                 <ul class="d-flex justify-content-center list-unstyled gap-2">
                     <li>
-                    <a href="#" class="btn btn-outline-light">
+                    <a href="{{$company->facebook}}" target="_blank" class="btn btn-outline-light">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     </li>
                     <li>
-                    <a href="#" class="btn btn-outline-light">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                    </li>                    
-                    <li>
-                    <a href="#" class="btn btn-outline-light">
+                    <a href="{{$company->instagram}}" target="_blank" class="btn btn-outline-light">
                         <i class="fab fa-instagram"></i>
                     </a>
                     </li>
                     <li>
-                    <a href="#" class="btn btn-outline-light">
+                    <a href="{{$company->tiktok}}" target="_blank" class="btn btn-outline-light">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    </li>  
+                    <li>
+                    <a href="{{$company->youtube}}" target="_blank" class="btn btn-outline-light">
                         <i class="fab fa-youtube"></i>
                     </a>
                     </li>
@@ -81,10 +81,9 @@
             <p class="text-white">© 2026 GRUPO VESERGENPERU.</p>
             </div>
             <div class="col-md-8 credit-link text-start text-md-end">
-                <a class="text-decoration-none text-white px-2" href="#">Políticas de privacidad</a>
-                <a class="text-decoration-none text-white px-2" href="#">Políticas de reembolso</a>
-                <a class="text-decoration-none text-white px-2" href="#">Términos del servicio</a>
-                <a class="text-decoration-none text-white px-2" href="#">Políticas de envío</a>
+                @foreach($politicas as $politica)
+                    <a class="text-decoration-none text-white px-2" href="{{ route('politicas.detalle', $politica->slug) }}">{{$politica->name}}</a>
+                @endforeach
             </div>
         </div>
     </div>

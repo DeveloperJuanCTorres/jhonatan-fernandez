@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Combo;
 use App\Models\Company;
+use App\Models\Policy;
 use App\Models\Product;
 use App\Models\Taxonomy;
 use Illuminate\Http\Request;
@@ -34,8 +36,10 @@ class HomeController extends Controller
         $products_oferta = Product::where('oferta', '=', 1)->get();
         $combos = Combo::limit(4)->get();
         $company = Company::first();
+        $politicas = Policy::all();
+        $banners = Banner::all();
         
-        return view('home',compact('categories','products_vendidos','combos','products_oferta','company'));
+        return view('home',compact('categories','products_vendidos','combos','products_oferta','company', 'politicas', 'banners'));
     }
 
     public function tienda(Request $request)
@@ -67,6 +71,7 @@ class HomeController extends Controller
             'categories' => Taxonomy::all(),
             'brands'     => Brand::all(),
             'company'    => Company::first(),
+            'politicas'  => Policy::all(),
         ]);
     }
 
@@ -74,7 +79,8 @@ class HomeController extends Controller
     public function contact()
     {
         $company = Company::first();
-        return view('contact', compact('company'));
+        $politicas = Policy::all();
+        return view('contact', compact('company', 'politicas'));
     }
 
     public function send(Request $request)
@@ -100,28 +106,40 @@ class HomeController extends Controller
     public function blog()
     {
         $company = Company::first();
-        return view('blog', compact('company'));
+        $politicas = Policy::all();
+        return view('blog', compact('company', 'politicas'));
     }
 
     public function detalleProducto($slug)
     {
         $company = Company::first();
         $product = Product::where('slug', $slug)->firstOrFail();
+        $politicas = Policy::all();
         $similares = Product::where('taxonomy_id', $product->taxonomy_id)
             ->where('id', '!=', $product->id)
             ->limit(4)
             ->get();
-        return view('detalle-producto', compact('product','company','similares'));
+        return view('detalle-producto', compact('product','company','similares', 'politicas'));
     }
+    
+    public function detallePoliticas($slug)
+    {
+        $company = Company::first();
+        $politica = Policy::where('slug', $slug)->firstOrFail();
+        $politicas = Policy::all();
+        return view('politicas', compact('company', 'politica', 'politicas'));
+    }
+
 
     public function detalleCombo($slug)
     {
         $company = Company::first();
         $product = Combo::where('slug', $slug)->firstOrFail();
+        $politicas = Policy::all();
         $similares = Product::where('taxonomy_id', $product->taxonomy_id)
             ->where('id', '!=', $product->id)
             ->limit(4)
             ->get();
-        return view('detalle-combo', compact('product','company','similares'));
+        return view('detalle-combo', compact('product','company','similares', 'politicas'));
     }
 }
