@@ -44,7 +44,7 @@
         <div class="footer-menu">
             <h5 class="widget-title text-white text-center">Libro de reclamaciones</h5>
             <a href="/libro-reclamaciones">
-                <img class="d-flex m-auto" width="100" src="images/libro.png" alt="">
+                <img class="d-flex m-auto" width="100" src="{{asset('images/libro.png')}}" alt="">
             </a>
             
             <div class="social-links mt-3">
