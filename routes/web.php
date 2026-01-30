@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,14 @@ Route::get('/producto/{slug}', [HomeController::class, 'detalleProducto'])
 
 Route::get('/combo/{slug}', [HomeController::class, 'detalleCombo'])
     ->name('store.combo.detalle');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/perfil', [ProfileController::class, 'index'])->name('profile');
+
+    Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/perfil/password', [ProfileController::class, 'password'])->name('profile.password');
+});
 
 
 Route::group(['prefix' => 'admin'], function () {

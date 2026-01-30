@@ -73,7 +73,7 @@
 
                             <li>
                                 <!-- <a class="dropdown-item" href=" route('profile') "> -->
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('profile')}}">
                                     <i class="bi bi-person me-2"></i> Perfil
                                 </a>
                             </li>
