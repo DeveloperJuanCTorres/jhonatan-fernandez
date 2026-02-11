@@ -123,6 +123,7 @@
                         data-price="{{ $product->price }}"
                         data-brand="{{ $product->brand_id }}">
                         <figure>
+                            @if($imgs->count() > 0)
                         <a href="{{ route('store.producto.detalle', $product->slug) }}" title="Product Title">
                             <img src="/storage/{{ $imgs[0] }}" height="150" alt="Product Thumbnail" class="tab-image d-flex m-auto">
                         </a>
