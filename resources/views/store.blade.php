@@ -117,12 +117,12 @@
             <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3">
                 
                 @foreach($products as $product)
-                @php $imgs = json_decode($product->images); @endphp
+                @php $imgs = json_decode($product->images, true); @endphp
                 <div class="col pt-2">
                     <div class="product-item product-card"
                         data-price="{{ $product->price }}"
                         data-brand="{{ $product->brand_id }}">
-                        @if($imgs)
+                        @if(is_array($imgs) && count($imgs) > 0)
                         <figure>
                         
                             <a href="{{ route('store.producto.detalle', $product->slug) }}" title="Product Title">
