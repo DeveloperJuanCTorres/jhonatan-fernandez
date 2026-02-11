@@ -122,12 +122,14 @@
                     <div class="product-item product-card"
                         data-price="{{ $product->price }}"
                         data-brand="{{ $product->brand_id }}">
+                        @if($imgs)
                         <figure>
-                            @if($imgs->count() > 0)
-                        <a href="{{ route('store.producto.detalle', $product->slug) }}" title="Product Title">
-                            <img src="/storage/{{ $imgs[0] }}" height="150" alt="Product Thumbnail" class="tab-image d-flex m-auto">
-                        </a>
+                        
+                            <a href="{{ route('store.producto.detalle', $product->slug) }}" title="Product Title">
+                                <img src="/storage/{{ $imgs[0] }}" height="150" alt="Product Thumbnail" class="tab-image d-flex m-auto">
+                            </a>
                         </figure>
+                        @endif
                         <div class="d-flex flex-column text-center">
                             <h3 class="fs-6 fw-normal">{{$product->name}}</h3>
                             <div>
