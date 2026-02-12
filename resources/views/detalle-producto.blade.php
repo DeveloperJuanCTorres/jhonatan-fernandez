@@ -177,7 +177,7 @@
                         <img class="d-flex m-auto"
                             src="{{ isset($imgs[0]) ? asset('storage/'.$imgs[0]) : asset('images/logo-jf.png') }}"
                             height="180">
-                        <!-- <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180"> -->
+                        <!-- <img class="d-flex m-auto" src="/storage/$imgs[0] " height="180"> -->
                         <div class="fade-line"></div>
                         <h6>{{ $item->name }}</h6>
                         <div class="product-footer">
