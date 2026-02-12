@@ -175,7 +175,7 @@
                 <a href="{{ route('store.producto.detalle', $item->slug) }}" class="text-decoration-none text-dark">
                     <div class="product-card" style="box-shadow: inset;">
                         <img class="d-flex m-auto"
-                            src="{{ isset($imgs[0]) ? asset('storage/'.$imgs[0]) : asset('images/logo-jf.png') }}"
+                            src="{{ isset($imgs[0]) ? asset('storage/'.$imgs[0]) : asset('images/sin-imagen.png') }}"
                             height="180">
                         <!-- <img class="d-flex m-auto" src="/storage/$imgs[0] " height="180"> -->
                         <div class="fade-line"></div>
