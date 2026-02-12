@@ -169,12 +169,15 @@
 
         <div class="row g-4">
             @foreach($similares as $item)
-            @php $imgs = json_decode($item->images); @endphp
+            @php $imgs = $item->images ? json_decode($item->images, true) : []; @endphp
 
             <div class="col-md-4 col-lg-3">
                 <a href="{{ route('store.producto.detalle', $item->slug) }}" class="text-decoration-none text-dark">
                     <div class="product-card" style="box-shadow: inset;">
-                        <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180">
+                        <img class="d-flex m-auto"
+                            src="{{ isset($imgs[0]) ? asset('storage/'.$imgs[0]) : asset('images/logo-jf.png') }}"
+                            height="180">
+                        <!-- <img class="d-flex m-auto" src="/storage/{{ $imgs[0] }}" height="180"> -->
                         <div class="fade-line"></div>
                         <h6>{{ $item->name }}</h6>
                         <div class="product-footer">
