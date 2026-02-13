@@ -4,7 +4,7 @@
 @include('partials.menu')
 
 @php
-    $imgs = json_decode($product->images);
+    $imgs = $item->images ? json_decode($item->images, true) : [];
 @endphp
 
 <div class="container py-5">
