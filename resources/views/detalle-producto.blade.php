@@ -16,10 +16,9 @@
 
             {{-- Imagen principal --}}
             <div class="border rounded mb-3 text-center">
-                <img id="mainImage"
-                     src="{{asset('storage/' . $imgs[0]) }}"
-                     class="img-fluid rounded"
-                     style="max-height:400px;">
+                <img id="mainImage" class="img-fluid rounded" style="max-height:400px;"
+                    src="{{ isset($imgs[0]) ? asset('storage/'.$imgs[0]) : asset('images/sin-imagen.png') }}"
+                    height="180">
             </div>
 
             {{-- Miniaturas --}}
